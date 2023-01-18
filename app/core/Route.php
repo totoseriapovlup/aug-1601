@@ -43,6 +43,13 @@ class Route
     private static function callAction(indexable $controller,$action){
         $controller->$action();
     }
+
+    public static function url(string $controller = null, string $action = null)
+    {
+        $controller = $controller ?? 'index';
+        $action = $action ?? 'index';
+        return "/{$controller}/{$action}";
+    }
 }
 
 
