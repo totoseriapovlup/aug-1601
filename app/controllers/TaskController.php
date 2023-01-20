@@ -24,4 +24,8 @@ class TaskController extends \app\core\AbstractController
             ]
         );
     }
+
+    public function create(){
+        $this->view->render('task_create');
+    }
 }
