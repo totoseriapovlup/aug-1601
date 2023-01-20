@@ -21,6 +21,7 @@ class View
 
     public function render(string $page, array $params = [])
     {
+        extract($params);
         $this->page = $page;
         include_once $this->getTemplatePath();
     }
