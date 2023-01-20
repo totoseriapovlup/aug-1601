@@ -11,6 +11,8 @@ abstract class AbstractController implements indexable
      */
     protected $view;
 
+    protected $model;
+
     /**
      * AbstractController constructor.
      */
