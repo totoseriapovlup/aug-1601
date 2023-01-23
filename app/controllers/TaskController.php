@@ -18,11 +18,11 @@ class TaskController extends \app\core\AbstractController
 
     public function index()
     {
-//        $this->model->all();
+        $tasks = $this->model->all();
         $this->view->render(
             'task_index',
             [
-                'tasks' => [],
+                'tasks' => $tasks,
             ]
         );
     }

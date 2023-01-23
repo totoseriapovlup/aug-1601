@@ -11,6 +11,11 @@
     <tbody>
         <?php if(count($tasks)>0):?>
             <?php foreach ($tasks as $task):?>
+            <tr>
+                <td><?= $task['id']?></td>
+                <td><?= $task['name']?></td>
+                <td></td>
+            </tr>
             <?php endforeach;?>
         <?php endif;?>
     </tbody>
