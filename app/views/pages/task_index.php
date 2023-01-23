@@ -1,8 +1,8 @@
 <h2>All tasks</h2>
 <a href="<?= url('task', 'create')?>">Create new task</a>
-<table>
+<table class="w3-table w3-striped w3-border">
     <thead>
-        <tr>
+        <tr class="w3-green">
             <th>#</th>
             <th>Name</th>
             <th>Action</th>
@@ -14,7 +14,12 @@
             <tr>
                 <td><?= $task['id']?></td>
                 <td><?= $task['name']?></td>
-                <td></td>
+                <td>
+                    <form action="<?= url('task', 'destroy')?>" method="post">
+                        <input type="hidden" name="id" value="<?= $task['id']?>"/>
+                        <button class="w3-button w3-red w3-round"><i class="fa fa-trash"></i></button>
+                    </form>
+                </td>
             </tr>
             <?php endforeach;?>
         <?php endif;?>

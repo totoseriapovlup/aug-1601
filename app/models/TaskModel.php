@@ -41,4 +41,14 @@ class TaskModel
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function delete(int $id)
+    {
+        $sql = "DELETE FROM tasks where id = $id;";
+        $result = $this->db->query($sql);
+        if (!$result) {
+            //TODO create log
+            exit('some problem with delete task');
+        }
+    }
+
 }

@@ -46,4 +46,12 @@ class TaskController extends \app\core\AbstractController
         ]);
         Route::redirect(Route::url('task','index'));
     }
+
+    public function destroy()
+    {
+        $id = filter_input(INPUT_POST, 'id');
+        //TODO check id in system else status 404
+        $this->model->delete($id);
+        Route::redirect(Route::url('task','index'));
+    }
 }
