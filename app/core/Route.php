@@ -50,6 +50,11 @@ class Route
         $action = $action ?? 'index';
         return "/{$controller}/{$action}";
     }
+
+    public static function redirect(string $url){
+        header("Location: $url");
+        exit();
+    }
 }
 
 
