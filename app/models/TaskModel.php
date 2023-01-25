@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\DBException;
 use mysqli;
 
 class TaskModel
@@ -12,12 +13,15 @@ class TaskModel
      */
     protected mysqli $db;
 
+    /**
+     * TaskModel constructor.
+     * @throws DBException
+     */
     public function __construct()
     {
         $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($this->db->connect_errno != 0) {
-            //TODO create log
-            exit('mysql gone away, try later');
+            throw new DBException($this->db->connect_error);
         }
     }
 

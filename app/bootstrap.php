@@ -15,5 +15,9 @@ spl_autoload_register(function ($class) {
     }
     return false;
 });
-
-\app\core\Route::init();
+try{
+    \app\core\Route::init();
+}catch (Exception $e){
+    //TODO log
+    echo 'Oops thomething went wrong';
+}

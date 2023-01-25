@@ -4,6 +4,8 @@
 namespace app\controllers;
 
 
+use app\core\DBException;
+use app\core\NotFoundException;
 use app\core\Route;
 use app\core\Validator;
 use app\models\TaskModel;
@@ -13,7 +15,13 @@ class TaskController extends \app\core\AbstractController
     public function __construct()
     {
         parent::__construct();
-        $this->model = new TaskModel();
+        try{
+            $this->model = new TaskModel();
+        }catch (DBException $e){
+            var_dump($e->getMessage());
+            exit();
+        }
+
     }
 
     public function index()
@@ -50,7 +58,9 @@ class TaskController extends \app\core\AbstractController
     public function destroy()
     {
         $id = filter_input(INPUT_POST, 'id');
-        //TODO check id in system else status 404
+        if(!$this->model->getById($id)){
+            throw new NotFoundException();
+        }
         $this->model->delete($id);
         Route::redirect(Route::url('task','index'));
     }
