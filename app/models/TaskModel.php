@@ -6,6 +6,7 @@ use mysqli;
 
 class TaskModel
 {
+    protected $table = 'tasks';
     /**
      * @var mysqli
      */
@@ -22,7 +23,7 @@ class TaskModel
 
     public function add(array $task)
     {
-        $sql = "INSERT INTO tasks (name) VALUES ('{$task['name']}');";
+        $sql = "INSERT INTO {$this->table} (name) VALUES ('{$task['name']}');";
         $result = $this->db->query($sql);
         if (!$result) {
             //TODO create log
@@ -32,18 +33,18 @@ class TaskModel
 
     public function all()
     {
-        $sql = "SELECT * FROM tasks;";//TODO think about ordering
+        $sql = "SELECT * FROM {$this->table};";//TODO think about ordering
         $result = $this->db->query($sql);
         if (!$result) {
             //TODO create log
-            exit('some problem with select task');
+            exit($this->db->error);
         }
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM tasks where id = $id;";
+        $sql = "DELETE FROM {$this->table} where id = $id;";
         $result = $this->db->query($sql);
         if (!$result) {
             //TODO create log
